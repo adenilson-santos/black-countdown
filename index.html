@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,7 +10,6 @@
   <link href="https://fonts.googleapis.com/css?family=Share&display=swap" rel="stylesheet">
 
   <style>
-    
     body {
       padding: 10px;
       margin: 0;
@@ -34,7 +34,8 @@
       align-items: center;
     }
 
-    #main-container .days-container, .time-container {
+    #main-container .days-container,
+    .time-container {
       display: flex;
       font-size: 70px;
     }
@@ -97,10 +98,10 @@
         transform: scale(1);
       }
     }
-
   </style>
 
 </head>
+
 <body>
 
   <div id="main-container">
@@ -110,7 +111,7 @@
       <strong>Black Friday </strong>
       <img src="./gocase-image.png" alt="Gocase Logo">
     </div>
-    
+
     <div class="days-container">
       <div class="days">-</div>&nbsp;days
     </div>
@@ -128,14 +129,14 @@
 
   <script>
 
-    var blackTime = new moment('28-11-2019 12:00:00',  'DD-MM-YYYY HH:mm:ss')
+    var blackTime = new moment('28-11-2019 00:00:00', 'DD-MM-YYYY HH:mm:ss')
 
     var timer = setInterval(function () {
       var currentTime = new moment()
-      var duration    = moment.duration(blackTime.diff(currentTime))
-              
-      var missing_days    = moment.duration(duration).days()
-      var missing_hours   = moment.duration(duration).hours()
+      var duration = moment.duration(blackTime.diff(currentTime))
+
+      var missing_days = moment.duration(duration).days()
+      var missing_hours = moment.duration(duration).hours()
       var missing_minutes = moment.duration(duration).minutes()
       var missing_seconds = moment.duration(duration).seconds()
 
@@ -144,18 +145,19 @@
         // document.querySelector('.header strong').classList.add('scale-animation')
         document.querySelector('.vamopracima').style.display = 'block'
       } else {
-        renderTime('days',    missing_days)
-        renderTime('hours',   missing_hours)
+        renderTime('days', missing_days)
+        renderTime('hours', missing_hours)
         renderTime('minutes', missing_minutes)
         renderTime('seconds', missing_seconds)
       }
 
     }, 1000)
 
-    function renderTime (time, data) { 
+    function renderTime(time, data) {
       document.getElementsByClassName(time)[0].innerHTML = data
     }
 
   </script>
 </body>
+
 </html>
