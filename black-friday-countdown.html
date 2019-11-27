@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Black Friday Gocase Countdown</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+  <link href="https://fonts.googleapis.com/css?family=Share&display=swap" rel="stylesheet">
+
+  <style>
+    
+    body {
+      padding: 10px;
+      margin: 0;
+      background-color: black;
+      color: white;
+      font-size: 50px;
+      height: 100vh;
+      max-width: 100%;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: 'Share', cursive;
+      overflow: none;
+      scroll-behavior: unset;
+    }
+
+    #main-container {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    #main-container .days-container, .time-container {
+      display: flex;
+      font-size: 70px;
+    }
+
+    .header {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .header img {
+      margin: 10px;
+    }
+
+    .emoji {
+      width: 80px;
+      height: 80pxx;
+      position: absolute;
+      top: 10px;
+      left: -95px;
+      transform: rotate(45deg);
+      animation: letsrocket 5s infinite;
+      animation-delay: 3s;
+    }
+
+    .vamopracima {
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      text-align: center;
+      display: none;
+    }
+
+    @keyframes letsrocket {
+      from {
+        left: -95px;
+      }
+
+      to {
+        left: 100%;
+      }
+    }
+
+    .scale-animation {
+      animation: scale-animation 1s infinite;
+    }
+
+    @keyframes scale-animation {
+      0% {
+        transform: scale(1);
+      }
+
+      50% {
+        transform: scale(1.2);
+      }
+
+      100% {
+        transform: scale(1);
+      }
+    }
+
+  </style>
+
+</head>
+<body>
+
+  <div id="main-container">
+    <img src="./start-up.svg" alt="Gocase Rocket" class="emoji">
+
+    <div class="header">
+      <strong>Black Friday </strong>
+      <img src="./gocase-image.png" alt="Gocase Logo">
+    </div>
+    
+    <div class="days-container">
+      <div class="days">-</div>&nbsp;days
+    </div>
+
+    <div class="time-container">
+      <div class="hours">-</div> :
+      <div class="minutes">-</div> :
+      <div class="seconds">-</div>
+    </div>
+
+    <div class="vamopracima scale-animation">
+      <strong>#VAMOPRACIMA</strong>
+    </div>
+  </div>
+
+  <script>
+
+    var blackTime = new moment('28-11-2019 12:00:00',  'DD-MM-YYYY HH:mm:ss')
+
+    var timer = setInterval(function () {
+      var currentTime = new moment()
+      var duration    = moment.duration(blackTime.diff(currentTime))
+              
+      var missing_days    = moment.duration(duration).days()
+      var missing_hours   = moment.duration(duration).hours()
+      var missing_minutes = moment.duration(duration).minutes()
+      var missing_seconds = moment.duration(duration).seconds()
+
+      if (missing_days <= 0 && missing_hours <= 0 && missing_minutes <= 0 && missing_seconds <= 0) {
+        clearInterval(timer)
+        // document.querySelector('.header strong').classList.add('scale-animation')
+        document.querySelector('.vamopracima').style.display = 'block'
+      } else {
+        renderTime('days',    missing_days)
+        renderTime('hours',   missing_hours)
+        renderTime('minutes', missing_minutes)
+        renderTime('seconds', missing_seconds)
+      }
+
+    }, 1000)
+
+    function renderTime (time, data) { 
+      document.getElementsByClassName(time)[0].innerHTML = data
+    }
+
+  </script>
+</body>
+</html>
